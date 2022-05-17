@@ -14,11 +14,12 @@ const forecast = (longitude, latitude, callback) => {
     };
 
     request(options, function (error, response, body) {
+        console.log(body);
         if (error){
             callback("Unable to connect the weather service", undefined)
         } else {
             try {
-                callback(undefined, "It is curently "+body.forecast[0].maxTemp+" degrees out. There is "+ body.forecast[0].precipProb+ "% chance of rain")
+                callback(undefined, "It is curently "+body.forecast[0].maxFeelsLikeTemp+" degrees out. The hight temperature today is "+body.forecast[0].maxTemp+" degrees with a low of "+body.forecast[0].minTemp+" degrees. There is "+ body.forecast[0].precipProb+ "% chance of rain")
             } catch (error) {
                 callback('Unable to find location', undefined)
             }
